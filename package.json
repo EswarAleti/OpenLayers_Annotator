@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ui-start": "(cd ./frontend && yarn start)",
+    "backend-start": "(cd ./frontend && yarn start)",
+    "start": "yarn ui-start & cd.. & yarn backend-start &"
+  },
+
+  "author": "",
+  "license": "ISC"
+}
