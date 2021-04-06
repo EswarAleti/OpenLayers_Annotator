@@ -28,6 +28,17 @@ app.post('/geolocation', async(req, res) => {
     res.json(response)
 })
 
+app.get('/getall', async(req, res) => {
+  const data = req.body;
+  const model = new AnnotationModel({
+    lat: data.lat,
+    long: data.long,
+    annotation: data.annotation
+  })
+  const response = await model.save()
+  res.json(response)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
