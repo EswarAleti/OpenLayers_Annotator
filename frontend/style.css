@@ -3,10 +3,6 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 20px;
 }
-/* #map{
-    width: 100%;
-    height: 500px;
-} */
 
 .topnav{
     height: 60px;
@@ -111,6 +107,19 @@ body{
     /* justify-self: center; */
 }
 
+.content #formController .preview_page {
+    /* width: 200px; */
+    /* padding: 8px; */
+    display: flex;
+    /* flex-direction: column; */
+    margin: auto;
+    /* background-color: tomato; */
+    /* justify-self: center; */
+    /* box-shadow: 4px 1px 9px 1px grey; */
+    /* margin: 8px; */
+    /* justify-self: center; */
+}
+
 .content #formController .first_page{
     text-align: justify;
     text-justify: inter-word;
@@ -147,4 +156,13 @@ body{
 
 .content #formController .form label {
     width: 200px;
+}
+
+preview_page{
+    display: block;
+    margin: auto;    
+}
+
+td{
+    border: 1px solid black;
 }
