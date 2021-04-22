@@ -16,7 +16,7 @@
       </div>
 
       <div class="searchBox">
-            <input class="searchInput"type="text" name="" placeholder="Search...">
+            <input id="searchInput" type="text" name="" placeholder="Search..." value="">
             <button class="searchButton" href="#">
               <i class="fa fa-search"></i>
             </button>
@@ -42,9 +42,11 @@
           <div class=preview_page>
             <table id="annotations_table">
               <tr>
-                <td>Lattitude</td>
-                <td>Longittude</td>
-                <td>Annotation</td>
+                <thead>
+                  <td>Lattitude</td>
+                  <td>Longittude</td>
+                  <td>Annotation</td>
+                </thead>
               </tr>
             </table>
           </div>
@@ -64,6 +66,23 @@
             <div class="responseButtons">
               <button id="save">Save</button>
               <button id="reset">Reset</button>            
+            </div>
+          </div>
+          <div class="delete_form">
+            <div>
+              <label for="lon">Longittude:</label>
+              <input type="text" id="lon1" name="lon" value="">
+            </div>
+            <div>
+              <label for="lat">Lattitude:</label>
+              <input type="text" id="lat1" name="lat" value="">
+            </div>
+            <div>
+              <label for="annot">Annotation:</label>
+              <input type="text" id="annot1" name="annot" value="">
+            </div>
+            <div class="responseButtons">
+              <button id="delete">delete</button>
             </div>
           </div>
         </div>

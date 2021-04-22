@@ -94,7 +94,7 @@ body{
     /* align-tracks: center; */
 }
 
-.content #formController .form {
+.content #formController .form, .delete_form {
     width: 400px;
     padding: 8px;
     display: flex;
@@ -126,10 +126,14 @@ body{
 }
 
 .content #formController .form .responseButtons{
-    justify-content: flex-end;
+    justify-content:flex-end;
 }
 
-.content #formController .form button {
+.delete_form .responseButtons{
+    justify-content:flex-end
+}
+
+.content #formController .form button, .delete_form button {
     height: 30px;
     width: 100px;
     border-radius: 4px;
@@ -143,18 +147,18 @@ body{
     /* box-shadow: 4px 1px 9px 1px grey; */
 }
 
-.content #formController .form div {
+.content #formController .form div, .delete_form div {
     display: flex;
     /* justify-content: space-between; */
     height: 30px;
     margin-bottom: 8px;
 }
-.content #formController .form input {
+.content #formController .form input, .delete_form input {
     width: 200px;
     border-radius: 4px;
 }
 
-.content #formController .form label {
+.content #formController .form label, .delete_form label{
     width: 200px;
 }
 
@@ -165,4 +169,8 @@ preview_page{
 
 td{
     border: 1px solid black;
+}
+
+thead{
+    text-align: center;
 }
