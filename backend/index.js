@@ -13,9 +13,6 @@ app.use(express.json())
 app.use(cors())
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-// const db = mongoose.connection
-// db.on('error', (error) => console.error(error))
-// db.once('open', () => console.log('connected to database'))
 
 app.post('/geolocation', async(req, res) => {
     const data = req.body;
@@ -30,7 +27,7 @@ app.post('/geolocation', async(req, res) => {
 
 app.get('/geolocation', async(req, res) => {
     const annotations = await AnnotationModel.find(({ annotation: new RegExp(req.query.annotation, 'i')})).exec();
-    res.send(annotations)
+    res.json(annotations)
 })
 
 app.get('/nearest',async(req, res) => {  
@@ -48,17 +45,16 @@ app.get('/nearest',async(req, res) => {
         min_index = i;
       }
     }
-    console.log(annotations[min_index])
     res.send(annotations[min_index]);
 })
 
+app.put('/geolocation',async(req,res) => {
+  const response = await AnnotationModel.updateOne({"lat":req.body.lat, "long":req.body.long},{$set:{"annotation":req.body.annotation}});
+  res.json(response);
+})
+
 app.delete('/geolocation',async(req,res) => {
-  // console.log(req.body.lat,' ',req.body.long)
-  // res.send('Deleted Successfully');
-  // const data = req.body;
-  await AnnotationModel.remove(req.body).exec();
-  // const annotations = await AnnotationModel.find().exec()
-  // console.log(annotations[0])
+  var annotation = await AnnotationModel.remove(req.body).exec();
   res.send('Deleted successfully')
 })
 
