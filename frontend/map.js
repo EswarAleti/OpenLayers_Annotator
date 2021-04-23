@@ -1,8 +1,9 @@
 import 'ol/ol.css';
-import {Map, View, Feature} from 'ol';
+import {Map, View, Feature, Overlay} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
-import {fromLonLat} from 'ol/proj';
+import {fromLonLat, toLonLat} from 'ol/proj';
+import { nearestAnnotation } from './service';
 
 export const getMap = (overlay) => {
     return new Map({
@@ -18,4 +19,28 @@ export const getMap = (overlay) => {
           zoom: 12
         })
       });
+}
+
+export const getOverlay = () => {
+  var container = document.getElementById('popup');
+  return new Overlay({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250,
+    },
+  });
+}
+
+export const showPopUp = async(e,overlay) => {
+  var closer = document.getElementById('popup-closer');
+  closer.onclick = function () {
+    overlay.setPosition(undefined);
+    closer.blur();
+    return false;
+  };
+  
+  const data = await nearestAnnotation(toLonLat(e.coordinate)[1],toLonLat(e.coordinate)[0]);
+  document.getElementById('popup-content').innerHTML = data.annotation;
+  overlay.setPosition(e.coordinate);
 }

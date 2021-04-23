@@ -2,35 +2,17 @@ import Overlay from 'ol/Overlay';
 import { deleteAnnotationLister, previewAnnotationListener, submitAnnotationListner, updateAnnotationListner } from './listeners';
 import { nearestAnnotation } from './service';
 import { createPointOnMap, fillAddForm, fillDeleteForm, fillEditForm, fillForm, hideAll } from './helper';
-import { getMap } from './map';
+import { getMap, getOverlay, showPopUp } from './map';
 import { toLonLat } from 'ol/proj';
 var set_edit = 0;
 
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
-
-var overlay = new Overlay({
-  element: container,
-  autoPan: true,
-  autoPanAnimation: {
-    duration: 250,
-  },
-});
-
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
+const overlay = getOverlay();
 
 const map = getMap(overlay)
 
 map.on('click',async function(e){
   if(document.querySelector(".preview_page").style.display == "block"){
-    const data = await nearestAnnotation(toLonLat(e.coordinate)[1],toLonLat(e.coordinate)[0]);
-    content.innerHTML = data.annotation;
-    overlay.setPosition(e.coordinate);
+    showPopUp(e,overlay);
   }
   
   if (document.querySelector(".form").style.display == "block") {
