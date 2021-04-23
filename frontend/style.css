@@ -141,6 +141,7 @@ body{
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
+    /* left: -500px; */
     /* padding-left: 30px; */
     /* justify-content: flex-end; */
     /* border: 0px; */
@@ -174,3 +175,44 @@ td{
 thead{
     text-align: center;
 }
+
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    bottom: 12px;
+    left: -50px;
+    min-width: 200px;
+    text-align: center;
+  }
+  .ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+  }
+  .ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+  }
+  .ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+  }
+  .ol-popup-closer:after {
+    content: "✖";
+  }

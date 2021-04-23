@@ -1,7 +1,7 @@
 import { clearDeleteForm, clearForm,  showAnnotationsTable } from "./helper"
 import { deleteAnnotation, previewAnnotation, submitAnnotation, updateAnnotation } from "./service"
 
-export const deleteAnnotationLister = async() => {
+export const deleteAnnotationLister = (map) => async() => {
     const data = {
         annotation: document.getElementById("annotation1").value,
         lat: document.getElementById("lat1").value,
@@ -9,6 +9,7 @@ export const deleteAnnotationLister = async() => {
     }
     await deleteAnnotation(data);
     clearDeleteForm();
+    previewAnnotationListener(map);
 }
 
 export const updateAnnotationListner = async() => {

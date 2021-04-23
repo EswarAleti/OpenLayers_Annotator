@@ -18,6 +18,7 @@ export const nearestAnnotation = async(lat,long) => {
         },
         method: 'GET'
       });
+    // console.log(result.json())
     return await result.json();
 }
 
