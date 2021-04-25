@@ -18,7 +18,6 @@ export const nearestAnnotation = async(lat,long) => {
         },
         method: 'GET'
       });
-    // console.log(result.json())
     return await result.json();
 }
 
@@ -49,7 +48,7 @@ export const submitAnnotation = async(data) => {
 }
 
 export const previewAnnotation = async() => {
-    var search_input = document.getElementById("searchInput").value;
+  var search_input = document.getElementById("searchInput").value;
     document.getElementById("searchInput").value = '';
     const result = await fetch('http://localhost:3000/geolocation'+'?annotation='+search_input,{
       headers: {

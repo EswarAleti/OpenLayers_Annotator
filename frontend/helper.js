@@ -5,12 +5,6 @@ import {Map, View, Feature} from 'ol';
 import {toLonLat,fromLonLat} from 'ol/proj';
 import { nearestAnnotation } from './service';
 
-export const clearDeleteForm = () => {
-    document.getElementById("lon1").value = '';
-    document.getElementById("lat1").value = '';
-    document.getElementById("annotation1").value = '';
-}
-
 export const clearForm = () => {
     document.getElementById("lon").value = '';
     document.getElementById("lat").value = '';
@@ -24,21 +18,21 @@ export const fillDeleteForm = async(coordinate) => {
     document.getElementById("annotation1").value = data.annotation;
 }
 
-export const fillAddForm = (coordinate) => {
+export const fillForm = (coordinate) => {
     var lat = Math.round(toLonLat(coordinate)[1]*10000)/10000;
     var long = Math.round(toLonLat(coordinate)[0]*10000)/10000;
     document.getElementById("lon").value = long;
     document.getElementById("lat").value = lat;
 }
 
-export const fillEditForm = async(coordinate) => {
+export const fillFormWithNearest = async(coordinate) => {
     const data = await nearestAnnotation(toLonLat(coordinate)[1],toLonLat(coordinate)[0])
     document.getElementById("lon").value = data.long;
     document.getElementById("lat").value = data.lat;
     document.getElementById("annotation").value = data.annotation;
 }
 
-export const showAnnotationsTable = (map, annotationsData) => {
+export const showAnnotationsTable = (annotationsData) => {
     var table = document.getElementById("annotations_table");
     table.innerHTML = "<tr><thead><td>Latittude</td><td>Longitude</td><td>Annotation</td></thead></tr>"
     for(var i=0; i<annotationsData.length;i++){
@@ -49,7 +43,12 @@ export const showAnnotationsTable = (map, annotationsData) => {
         lat_cell.innerHTML = annotationsData[i].lat;
         long_cell.innerHTML = annotationsData[i].long;
         annotation_cell.innerHTML = annotationsData[i].annotation;
-        createPointOnMap(map, fromLonLat([annotationsData[i].long,annotationsData[i].lat]));
+   }
+}
+
+export const displayPointsOnMap = (map, annotationsData) => {
+    for(var i=0; i<annotationsData.length;i++){
+     createPointOnMap(map, fromLonLat([annotationsData[i].long,annotationsData[i].lat]));
     }
 }
 
@@ -68,9 +67,7 @@ export const createPointOnMap = (map,coordinate) => {
 
 export const hideAll = () => {
     clearForm();
-    clearDeleteForm();
     document.querySelector(".home_page").style.display = "None";
     document.querySelector(".preview_page").style.display = "None";
     document.querySelector(".form").style.display = "None";
-    document.querySelector(".delete_form").style.display = "None";
 }

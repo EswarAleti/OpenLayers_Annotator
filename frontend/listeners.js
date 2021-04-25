@@ -1,7 +1,8 @@
-import { clearDeleteForm, clearForm,  showAnnotationsTable } from "./helper"
+import { clearDeleteForm, clearForm,  displayPointsOnMap,  showAnnotationsTable } from "./helper"
+import { createMap } from "./map";
 import { deleteAnnotation, previewAnnotation, submitAnnotation, updateAnnotation } from "./service"
 
-export const deleteAnnotationLister = (map) => async() => {
+export const deleteAnnotationLister = async(map) => {
     const data = {
         annotation: document.getElementById("annotation1").value,
         lat: document.getElementById("lat1").value,
@@ -9,7 +10,7 @@ export const deleteAnnotationLister = (map) => async() => {
     }
     await deleteAnnotation(data);
     clearDeleteForm();
-    previewAnnotationListener(map);
+    await createMap();
 }
 
 export const updateAnnotationListner = async() => {
@@ -20,6 +21,7 @@ export const updateAnnotationListner = async() => {
     }
     await updateAnnotation(data);
     clearForm();
+    await createMap()
 }
 
 export const submitAnnotationListner = async() => {
@@ -30,9 +32,10 @@ export const submitAnnotationListner = async() => {
     }
     await submitAnnotation(data);
     clearForm();
+    await createMap()
 }
 
-export const previewAnnotationListener = (map) => async() => {
+export const previewAnnotationListener = async() => {
     const annotationsData = await previewAnnotation();
-    showAnnotationsTable(map, annotationsData);
+    showAnnotationsTable( annotationsData);
 }

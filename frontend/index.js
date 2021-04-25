@@ -1,47 +1,42 @@
-import Overlay from 'ol/Overlay';
 import { deleteAnnotationLister, previewAnnotationListener, submitAnnotationListner, updateAnnotationListner } from './listeners';
-import { nearestAnnotation } from './service';
-import { createPointOnMap, fillAddForm, fillDeleteForm, fillEditForm, fillForm, hideAll } from './helper';
-import { getMap, getOverlay, showPopUp } from './map';
-import { toLonLat } from 'ol/proj';
+import { clearForm, hideAll } from './helper';
+import { createMap,} from './map';
+
 var set_edit = 0;
 
-const overlay = getOverlay();
+const map = createMap()
 
-const map = getMap(overlay)
+document.querySelector(".preview_btn").addEventListener("click",
+  function() {set_edit=0;changeBlock(".preview_page") 
+});
 
-map.on('click',async function(e){
-  if(document.querySelector(".preview_page").style.display == "block"){
-    showPopUp(e,overlay);
-  }
-  
-  if (document.querySelector(".form").style.display == "block") {
-    if(set_edit==1){
-      fillEditForm(e.coordinate)
-    }
-    else{
-      createPointOnMap(map, e.coordinate)
-      fillAddForm(e.coordinate);
-    } 
-  }
-  if(document.querySelector(".delete_form").style.display == "block")
-  {
-    fillDeleteForm(e.coordinate)
-  }
-})
+document.querySelector(".add_btn").addEventListener("click", 
+ function() {
+   changeBlock(".form")
+   document.querySelector(".form").setAttribute('type','ADD');
+ }
+);
 
-document.querySelector(".preview_btn").addEventListener("click", function() {set_edit=0;changeBlock(".preview_page") });
-document.querySelector(".add_btn").addEventListener("click", function() {set_edit=0;changeBlock(".form") });
-document.querySelector(".edit_btn").addEventListener("click", function() {set_edit=1;changeBlock(".form")});
+document.querySelector(".edit_btn").addEventListener("click", function() {
+  changeBlock(".form")
+  document.querySelector(".form").setAttribute('type','EDIT');
+});
+
+document.querySelector(".delete_btn").addEventListener("click", function() {
+  changeBlock(".form")
+});
+
 document.querySelector(".searchButton").addEventListener("click", function() {set_edit=0;changeBlock(".preview_page")});
-document.querySelector(".delete_btn").addEventListener("click", function() {set_edit=0;changeBlock(".delete_form")});
 
-
-document.getElementsByClassName('preview_btn')[0].addEventListener('click',previewAnnotationListener(map));
-document.querySelector(".searchButton").addEventListener("click", previewAnnotationListener(map));
-document.getElementById("delete").addEventListener("click", deleteAnnotationLister(map)); 
+document.getElementsByClassName("preview_btn")[0].addEventListener("click",async function() {
+  await previewAnnotationListener(map)
+});
+document.querySelector(".searchButton").addEventListener("click", function() {previewAnnotationListener(map)});
+// document.getElementById("delete").addEventListener("click", function() {deleteAnnotationLister(map)});
+document.getElementById("reset").addEventListener("click", function() {clearForm()}); 
 document.getElementById("save").addEventListener("click", function(){
-  set_edit==1 ? updateAnnotationListner():submitAnnotationListner();
+  const type = document.querySelector(".form").getAttribute("type")
+  type == "EDIT" ? updateAnnotationListner():submitAnnotationListner();
 }); 
 
 function changeBlock(class_name)
