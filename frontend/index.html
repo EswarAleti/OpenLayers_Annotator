@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>OpenLayers</title>
-    <link rel="stylesheet" href="./style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div class="topnav">
@@ -16,14 +19,19 @@
       </div>
 
       <div class="searchBox">
-            <input id="searchInput" type="text" name="" placeholder="Search..." value="">
-            <button class="searchButton" href="#">
-              <i class="fa fa-search"></i>
-            </button>
-        </div>
-
-
-    </div><br>
+        <input
+          id="searchInput"
+          type="text"
+          name=""
+          placeholder="Search..."
+          value=""
+        />
+        <button class="searchButton" href="#">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <br />
     <div>
       <div class="content">
         <div id="map"></div>
@@ -39,11 +47,16 @@
             <button class="edit_btn">Edit</button>
           </div>
           <div class="home_page">
-            <p><b>Annotator</b> annotates the geolocation of a map with text or numeric.
-            It'll be used to define the need of a location which is effected by creating an annotation at that particular geolocation.
-            For example, location A needs 100 food packets, using annotator tool we can annotate location A with with some annotation which defines need of location A.</p>
+            <p>
+              <b>Annotator</b> annotates the geolocation of a map with text or
+              numeric. It'll be used to define the need of a location which is
+              effected by creating an annotation at that particular geolocation.
+              For example, location A needs 100 food packets, using annotator
+              tool we can annotate location A with with some annotation which
+              defines need of location A.
+            </p>
           </div>
-          <div class=preview_page>
+          <div class="preview_page">
             <table id="annotations_table">
               <tr>
                 <thead>
@@ -57,19 +70,19 @@
           <div class="form">
             <div>
               <label for="lon">Longittude:</label>
-              <input type="text" id="lon" name="lon" value="">
+              <input type="text" id="lon" name="lon" value="" />
             </div>
             <div>
               <label for="lat">Lattitude:</label>
-              <input type="text" id="lat" name="lat" value="">
+              <input type="text" id="lat" name="lat" value="" />
             </div>
             <div>
               <label for="annotation">Annotation:</label>
-              <input type="text" id="annotation" name="annotation" value="">
+              <input type="text" id="annotation" name="annotation" value="" />
             </div>
             <div class="responseButtons">
               <button id="save">Save</button>
-              <button id="reset">Reset</button>            
+              <button id="reset">Reset</button>
             </div>
           </div>
         </div>
