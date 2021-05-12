@@ -12,8 +12,8 @@ export const clearForm = () => {
 };
 
 export const fillForm = (coordinate) => {
-  var lat = Math.round(toLonLat(coordinate)[1] * 10000) / 10000;
-  var long = Math.round(toLonLat(coordinate)[0] * 10000) / 10000;
+  var lat = toLonLat(coordinate)[1]; //Math.round(toLonLat(coordinate)[1] * 10000) / 10000;
+  var long = toLonLat(coordinate)[0]; //Math.round(toLonLat(coordinate)[0] * 10000) / 10000;
   document.getElementById("lon").value = long;
   document.getElementById("lat").value = lat;
 };

@@ -1,4 +1,5 @@
 import { changeBlock, clearForm, showAnnotationsTable } from "../helper";
+import { createMap } from "../map";
 import { previewAnnotation } from "../service";
 import { saveListener } from "./form_listeners";
 import {
@@ -30,6 +31,10 @@ export const allListeners = () => {
       const data = await previewAnnotation();
       showAnnotationsTable(data);
     });
+
+  document.querySelector(".refresh_btn").addEventListener("click", async () => {
+    createMap();
+  });
 
   document.getElementById("reset").addEventListener("click", clearForm);
   document.getElementById("save").addEventListener("click", saveListener);
